@@ -1,0 +1,30 @@
+<div th:fragment="header">
+	<header class="header">
+		<!-- Top Nav Bar -->
+		<nav class="navbar navbar-dark bg-dark p-1">
+			<div class="container-fluid">
+				<div class="navbar-holder d-flex align-items-center justify-content-between">
+					<div class="navbar-header">
+						<a id="toggle-btn" data-toggle="collapse" href="#" class="amazon-btn">
+						    <i class="fa fa-amazon"></i>
+						</a>
+					</div>
+					<!--Top nav menu -->
+					<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+
+						<!-- Message -->
+						<li><a th:href="@{/user/contact_me}"><i class="fa fa-envelope py-2"></i></a></li>
+
+						<!-- Logout -->
+						<li>
+							<a th:href="@{/logout}" class="nav-link logout py-2">
+								<span class="d-none d-sm-inline-block">Logout</span>
+								<i class="fa fa-sign-out"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+</div>

@@ -1,0 +1,34 @@
+<div th:fragment="side_bar">
+	<nav class="side-navbar">
+		<div class="side-navbar-wrapper">
+			<!-- Sidebar Wrapper -->
+			<div
+				class="sidenav-header d-flex align-items-center justify-content-center mb-4 p-4">
+				<!-- User Info, containing user profile image(click to go to profile) -->
+				<div class="sidenav-header-inner text-center">
+					<a><img th:src="@{/img/user_image.jpg}" class="rounded-circle"></a>
+
+					<!-- User name from database -->
+					<h3 sec:authentication="name"></h3>
+					<span sec:authentication="principal.authorities"></span>
+				</div>
+			</div>
+			
+			<div class="sidenav-menu">
+				<strong class="sidenav-menu-heading">
+				Current Page</strong>
+				<!-- List of functions -->
+				<ul class="side-menu list-unstyled">
+					<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+					<li><a sec:authorize="hasAnyRole('ADMIN')"
+						th:href="@{/admin/empty}"><i class="fa fa-home"></i>Only for Admin</a></li>
+
+					<li><a th:href="@{/user/change_password}"><i
+							class="fa fa-home"></i>Change Password</a></li>
+					<li><a th:href="@{/user/generate_report}"><i
+							class="fa fa-home"></i>Generate Report</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>
