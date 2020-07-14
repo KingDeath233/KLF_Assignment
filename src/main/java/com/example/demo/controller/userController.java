@@ -3,26 +3,34 @@ package com.example.demo.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.dto.UserActivityDTOFull;
 import com.example.demo.entities.Contact;
 import com.example.demo.entities.SecureUsers;
 import com.example.demo.services.MailService;
+import com.example.demo.services.UserActivityService;
 import com.example.demo.services.UsersService;
 
 @Controller
-public class userController {
+public class userController extends mainController{
 	
 	@Autowired
 	UsersService userService;
 	
 	@Autowired
 	MailService mailService;
+	
+	@Autowired
+	UserActivityService UAS;
 	
 	@RequestMapping("/user/change_password")
 	public String changePassword(Model theModel) {
@@ -61,7 +69,15 @@ public class userController {
 	}
 	
 	@RequestMapping("/user/generate_report")
-	public String generateReport() {
+	public String generateReport(Model theModel, @RequestParam(value = "page",defaultValue = "1")int page, @RequestParam(value = "size",defaultValue = "5")int size,@RequestParam(value = "key",defaultValue = "")String key) {
+		Page<UserActivityDTOFull> entityPage = UAS.findAllFromUADTO(PageRequest.of(page-1, size),key);
+		theModel.addAttribute("report", entityPage);
+		theModel = setPageAndKey(theModel,entityPage.getTotalPages(),page,key);
 		return "user/generate_report";
+	}
+	
+	@RequestMapping("/user/query")
+	public String query() {
+		return "user/query";
 	}
 }

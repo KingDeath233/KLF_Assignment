@@ -17,7 +17,15 @@ public class UsersService {
 	
 	public void save(String newPass) {
 		String newPassword = SUDS.encode(newPass);
-		Users tmp = new Users(SUDS.getUsername(),newPassword);
+		Users tmp = new Users(getCurrentId(),SUDS.getUsername(),newPassword);
 		repo.save(tmp);
+	}
+	
+	public int getCurrentId() {
+		return repo.findByUsername(SUDS.getUsername()).getId();
+	}
+	
+	public Users findByUsername(String username) {
+		return repo.findByUsername(username);
 	}
 }

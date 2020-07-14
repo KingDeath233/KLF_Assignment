@@ -6,25 +6,34 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="users")
+@Table(name="user_activity")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Users {
+
+public class UserActivity {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="username")
-	private String username;
+	@Column(name="user_id")
+	private int userId;
 	
-	@Column(name="password")
-	private String password;
+	@Column(name="activity_id")
+	private int activityId;
+	
+	@Column(name="occurrence")
+	@Temporal(TemporalType.TIMESTAMP)
+	private java.util.Date occurrence;
+
+	
 }

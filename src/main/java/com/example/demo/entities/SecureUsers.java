@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
@@ -25,6 +27,8 @@ public class SecureUsers implements UserDetails{
 	
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 	@NotEmpty(message="Username cannot be empty!")
 	private String username;
 	@Length(min=5, message="Password should be more than 5 digits!")

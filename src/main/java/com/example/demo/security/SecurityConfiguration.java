@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;;
 
 @Configuration
 @EnableWebSecurity
@@ -45,8 +45,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.jdbcAuthentication()
 			.dataSource(springDataSource);
 	}
-
-	
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

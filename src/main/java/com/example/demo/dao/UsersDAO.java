@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.entities.Users;
 
-public interface UsersDAO extends JpaRepository<Users, String>{
+public interface UsersDAO extends JpaRepository<Users, Integer>{
 
+	public Users findByUsername(String username);
+	
 }
