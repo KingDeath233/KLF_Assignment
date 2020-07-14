@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 
 import org.springframework.ui.Model;
 
-public class mainController {
+public class MainController {
 
 	public Model setPageAndKey(Model theModel,int totalPages,int page,String key) {
 		 if(totalPages>=0) {

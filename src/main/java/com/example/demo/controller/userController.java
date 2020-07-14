@@ -21,7 +21,7 @@ import com.example.demo.services.UserActivityService;
 import com.example.demo.services.UsersService;
 
 @Controller
-public class userController extends mainController{
+public class UserController extends MainController{
 	
 	@Autowired
 	UsersService userService;
@@ -32,7 +32,7 @@ public class userController extends mainController{
 	@Autowired
 	UserActivityService UAS;
 	
-	@RequestMapping("/user/change_password")
+	@RequestMapping("user/change_password")
 	public String changePassword(Model theModel) {
 		SecureUsers user = new SecureUsers();
 		user.setUsername("tmp");
@@ -40,7 +40,7 @@ public class userController extends mainController{
 		return "user/change_password";
 	}
 	
-	@PostMapping("/user/process-password")
+	@PostMapping("user/process-password")
 	public String registerUser(@Valid @ModelAttribute("user") SecureUsers user, BindingResult result, Model model) {
 		if(result.hasErrors()){
 			return "user/change_password";
@@ -51,13 +51,13 @@ public class userController extends mainController{
 		}
 	}
 	
-	@RequestMapping("/user/contact_me")
+	@RequestMapping("user/contact_me")
 	public String contactMe(Model theModel) {
 		theModel.addAttribute("contact", new Contact());
 		return "user/contact_me";
 	}
 	
-	@PostMapping("/user/process-contact")
+	@PostMapping("user/process-contact")
 	public String processContact(@Valid @ModelAttribute("contact") Contact contact, BindingResult result, Model model) {
 		if(result.hasErrors()){
 			return "user/contact_me";
@@ -68,7 +68,7 @@ public class userController extends mainController{
 		}
 	}
 	
-	@RequestMapping("/user/generate_report")
+	@RequestMapping("user/generate_report")
 	public String generateReport(Model theModel, @RequestParam(value = "page",defaultValue = "1")int page, @RequestParam(value = "size",defaultValue = "5")int size,@RequestParam(value = "key",defaultValue = "")String key) {
 		Page<UserActivityDTOFull> entityPage = UAS.findAllFromUADTO(PageRequest.of(page-1, size),key);
 		theModel.addAttribute("report", entityPage);
@@ -76,7 +76,7 @@ public class userController extends mainController{
 		return "user/generate_report";
 	}
 	
-	@RequestMapping("/user/query")
+	@RequestMapping("user/query")
 	public String query() {
 		return "user/query";
 	}

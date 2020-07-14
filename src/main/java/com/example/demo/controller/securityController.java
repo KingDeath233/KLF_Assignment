@@ -22,7 +22,7 @@ import com.example.demo.services.SystemUserDetailsService;
 import com.example.demo.services.UserActivityService;
 
 @Controller
-public class securityController {
+public class SecurityController {
 	
 	@Autowired 
 	SystemUserDetailsService SUDS;
@@ -30,7 +30,7 @@ public class securityController {
 	@Autowired
 	UserActivityService UAS;
 	
-	@RequestMapping("/success")
+	@RequestMapping("success")
 	public String success() {
 		return "success";
 	}
@@ -41,12 +41,12 @@ public class securityController {
 		return "system/main";
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping("login")
 	public String login() {
 		return "login";
 	}
 	
-	@GetMapping("/register")
+	@GetMapping("register")
 	public String register(Model model) {
 		model.addAttribute("newUser", new SecureUsers());
 		return "register";
@@ -63,7 +63,7 @@ public class securityController {
 		return "redirect:/login?signedup";
 	}
 	
-	@RequestMapping("/access-denied")
+	@RequestMapping("access-denied")
 	public String accessDenied() {
 		return "access_denied";
 	}
