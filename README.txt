@@ -13,6 +13,10 @@ or
 
 Just visit www.kvdems.com, is my domain and I already put this system on there
 
+in case it did not work
+
+Also try Ems-env.eba-drtge4ff.us-east-2.elasticbeanstalk.com
+
 
 Ps:
 
